@@ -1,0 +1,30 @@
+{
+  "name": "MetatronJS",
+  "version": "1.0.0",
+  "description": "Javascript UI library that helps you create your own custom workflow designers",
+  "main": "Main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.virtusa.com/GTO/Metatron.git"
+  },
+  "keywords": [
+    "metatron",
+    "js",
+    "workflow",
+    "gto",
+    "virtusa",
+	"virtusapolaris"
+  ],
+  "author": "SMAKALANDE (GTO - VirtusaPolaris)",
+  "devDependencies": {
+    "eslint": "^3.17.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-eslint": "^19.0.0",
+    "load-grunt-tasks": "^3.5.2"
+  }
+}

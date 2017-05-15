@@ -1,0 +1,160 @@
+<script src="scripts/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="scripts/raphael.min.js" type="text/javascript"></script>
+<script src="config/met-config.js" type="text/javascript"></script>
+<script src="data/sample.js" type="text/javascript"></script>
+<script src="../distrib/metatron.js" type="text/javascript"></script>
+<style type="text/css">
+    body {
+        background-color: #ccc;
+    }
+    
+    .mainContainer {
+        height: 100%;
+        width: 800px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    .containerArea {
+        height: 100%;
+        overflow-y: auto;
+    }
+</style>
+
+<script type="text/javascript">
+    var metWorkspace;
+    var sample = SAMPLE;
+    $(document).ready(function () {
+        metWorkspace = Metatron.create('mainContainer', MET_STENCIL_BOX_CONFIG, true);
+        metWorkspace.on('save', function (data) {
+            console.log(data);
+        });
+        metWorkspace.on('run', function () {
+            console.log('Running...');
+        });
+        metWorkspace.on('stop', function () {
+            console.log('Stopped!');
+        });
+        metWorkspace.on('componentClick', function (component) {
+            console.log('Component clicked!');
+            console.log(component);
+        });
+        metWorkspace.on('connectionClick', function (connection) {
+            console.log('Connection clicked!');
+            console.log(connection);
+        });
+        metWorkspace.on('componentDblClick', function (component) {
+            console.log('Component double clicked!');
+            console.log(component);
+        });
+        metWorkspace.on('executeCommand', function (command, internal) {
+            console.log(internal);
+            console.log(command);
+        });
+        metWorkspace.on('undoCommand', function (command) {
+            console.log(command);
+        });
+        metWorkspace.on('redoCommand', function (command) {
+            console.log(command);
+        });
+        metWorkspace.on('canvasClick', function (e) {
+            console.log('Canvas clicked!');
+            console.log(e);
+        });
+        metWorkspace.on('validationFailed', function (e) {
+            console.log(e);
+        });
+
+        metWorkspace.addComponent({
+            displayName: 'Start',
+            position: {
+                x: 300,
+                y: 60
+            },
+            stencilId: 'StartTask',
+            inboundConnections: [],
+            outboundConnections: []
+        });
+
+        metWorkspace.addComponent({
+            displayName: 'End',
+            position: {
+                x: 300,
+                y: 300
+            },
+            stencilId: 'EndTask',
+            inboundConnections: [],
+            outboundConnections: []
+        });
+
+        metWorkspace.setMenu(false, [
+            {
+                title: 'Run',
+                icon: 'images/accello/metatron/run.svg',
+                function: function () {
+                    metWorkspace.addIndicator('cmp_2', 'STARTED');
+                    metWorkspace.addIndicator('cmp_3', 'WAITING');
+                    metWorkspace.addIndicator('cmp_9', 'SUCCESS');
+                    metWorkspace.addIndicator('cmp_7', 'REVERTED');
+                    metWorkspace.addIndicator('cmp_7', 'ERROR');
+                    metWorkspace.addIndicator('cmp_8', 'STOPPED');
+                    metWorkspace.addIndicator('cmp_8', 'WAITING');
+                }
+            },
+            {
+                title: 'Stop',
+                icon: 'images/accello/metatron/stop.svg',
+                function: function () {
+                    metWorkspace.removeIndicators();
+                }
+            }
+        ]);
+
+        metWorkspace.setMenu(true, [
+
+            {
+                title: 'Save',
+                icon: 'images/accello/metatron/save.svg',
+                function: function () {
+                    console.log(metWorkspace.extract());
+                }
+            },
+            {
+                title: 'Delete',
+                icon: 'images/accello/metatron/delete.svg',
+                function: function () {
+                    metWorkspace.deleteSelection();
+                }
+            },
+            {
+                title: 'Undo',
+                icon: 'images/accello/metatron/undo.svg',
+                function: function () {
+                    metWorkspace.undo();
+                }
+            },
+            {
+                title: 'Redo',
+                icon: 'images/accello/metatron/redo.svg',
+                function: function () {
+                    metWorkspace.redo();
+                }
+            }
+
+        ]);
+
+        metWorkspace.load(sample);
+
+        metWorkspace.showGrid();
+        // metWorkspace.hideGrid();
+
+        //metWorkspace.disableEditMode();
+        //metWorkspace.enableEditMode();
+    });
+</script>
+
+<body>
+    <div class="containerArea">
+        <div id="mainContainer" class="mainContainer"></div>
+    </div>
+</body>
