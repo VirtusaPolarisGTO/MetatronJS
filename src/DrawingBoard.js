@@ -509,16 +509,19 @@
 
             set.mousedown(function (e) {
                 e.stopPropagation();
-
-                var now = new Date().getTime();
-                if (this.firstClick && this.firstClick + 400 > now) {
-                    _instance.eventAPI.getFunction(_instance.eventAPI.EVT_CMP_DBL_CLICK)(component);
-                    this.firstClick = undefined;
+                if (!_instance.clickCount) {
+                    _instance.clickCount = 1;
+                    setTimeout(function() {
+                        if(_instance.clickCount === 1) {
+                            _instance.eventAPI.getFunction(_instance.eventAPI.EVT_CMP_CLICK)(component);
+                        } else {
+                            _instance.eventAPI.getFunction(_instance.eventAPI.EVT_CMP_DBL_CLICK)(component);
+                        }
+                        _instance.clickCount = 0;
+                    }, 200);
                 } else {
-                    _instance.eventAPI.getFunction(_instance.eventAPI.EVT_CMP_CLICK)(component);
-                    this.firstClick = now;
+                    _instance.clickCount++;
                 }
-
             });
 
             set.mouseup(function () {
