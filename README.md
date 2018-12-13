@@ -2,7 +2,7 @@
 
 MetatronJS is a Javascript UI library that helps you create your own custom workflow designers.
 
-**[Demo](http://sh4nik.com/metatronjs)
+**[Demo](http://sh4nik.com/metatronjs)**
 
 #### Features:
   * Create your own stencil-box by configuring your custom components and their beahvior
