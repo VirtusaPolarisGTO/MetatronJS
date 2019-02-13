@@ -2,7 +2,7 @@
 
 MetatronJS is a Javascript UI library that helps you create your own custom workflow designers.
 
-**[Demo](http://sh4nik.com/metatronjs)**
+**[Demo](https://virtusapolarisgto.github.io/MetatronJS/demo)**
 
 #### Features:
   * Create your own stencil-box by configuring your custom components and their beahvior
@@ -17,14 +17,10 @@ MetatronJS is a Javascript UI library that helps you create your own custom work
 
 #### Setting up:
 You need to have `npm` installed to build the library.  
-If you don't already have `grunt-cli` installed:
-```batch
-npm install -g grunt-cli
-```
 Once your environment is set up, you need to build the project
 ```batch
 npm install
-grunt
+npx grunt
 ```
 Now the project has been built and the `./distrib/` folder has been created with the distributable files inside it
 ```

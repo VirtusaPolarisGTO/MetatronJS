@@ -16,12 +16,12 @@
     "workflow",
     "gto",
     "virtusa",
-	"virtusapolaris"
+    "virtusapolaris"
   ],
   "author": "SMAKALANDE (GTO - VirtusaPolaris)",
   "devDependencies": {
     "eslint": "^3.17.1",
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.3",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-eslint": "^19.0.0",
